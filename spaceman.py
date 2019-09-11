@@ -86,12 +86,13 @@ def is_word_guessed(secret_word, letters_guessed):
     """
 
 
-# https://stackoverflow.com/questions/12971474/
+# # help from Jessica Trinh and https://stackoverflow.com/questions/12971474/
 # /how-to-find-if-a-secret-word-contains-all-the-characters-from-a-words_list
+
 # TODO: Loop through the letters in the secret_word and check if a letter
 # is not in letters_guessed
 # pass
-# help from Jessica Trinh
+
     for letter in secret_word:
         if letter not in letters_guessed:
             return False
@@ -186,10 +187,10 @@ def spaceman(secret_word):
         guessed_word is False
         #  Thanks George Aoyogi
         if secret_word == get_guessed_word(secret_word, letters_guessed):
-            # TODO: Ask the player to guess one letter per round and check that
-            # it is only one letter:
             guessed_word = False
             break
+        # TODO: Ask the player to guess one letter per round and check that
+        # it is only one letter:
         print(prPurple((
             "You have ") + str(total_guesses) + (" incorrect guesses left.")))
         guess = input(prRed("Enter a single letter: ")).lower()
