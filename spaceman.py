@@ -138,11 +138,13 @@ def spaceman(secret_word):
     guess = " "
     guessed_word = False
 
-    print("Welcome to Spaceman. A friendlier, less morbid version of the"
+    print(
+            "Welcome to Spaceman. A friendlier, less morbid version of the"
             " classic game 'hangman.'You have 7 incorrect guesses per game,"
             " please enter one letter guess per guess! Have fun!")
     print("The secret word has " + len_secret_word + " letters.")
     print("-----------------------")
+    print(secret_word)
 
     while total_guesses > 0 and total_guesses <= 8 and guessed_word is False:
         if secret_word == get_guessed_word(secret_word, letters_guessed):
@@ -183,8 +185,10 @@ def spaceman(secret_word):
         if guessed_word is True:
             return "You guessed the secret word! You win!"
         elif total_guesses == 0:
-            print("Uh oh! You lost this round. Please play again. The secret\
-            word was: ") + secret_word
+            print(
+                "Uh oh! You lost this round. Please play again. The secret"
+                "word was: ")
+            print(secret_word)
 
     # TODO: show the player information about the game according to the
     # project spec:
@@ -208,12 +212,6 @@ def spaceman(secret_word):
     # "Your letter is in the secret word! wOo!"
     # "You haven't guessed these letters yet, keep trying!: "
     # "Your letter is not in the secret word. Try again!"
-    # "You have 6 incorrect guesses left."
-    # "You have 5 incorrect guesses left."
-    # "You have 4 incorrect guesses left."
-    # You have 3 incorrect guesses left."
-    # "You have 2 incorrect guesses left."
-    # "You have only 1 incorrect guess left!"
 
     # TODO: show the guessed word so far
     # "Guessed word so far: "
