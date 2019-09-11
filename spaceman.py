@@ -1,6 +1,47 @@
 """Spaceman."""
 import random
 
+
+def prRed(skk):
+    """Red."""
+    return("\033[91m {}\033[00m" .format(skk))
+
+
+def prGreen(skk):
+    """Green."""
+    return("\033[92m {}\033[00m" .format(skk))
+
+
+def prYellow(skk):
+    """Yellow."""
+    return("\033[93m {}\033[00m" .format(skk))
+
+
+def prLightPurple(skk):
+    """Light Purple."""
+    return("\033[94m {}\033[00m" .format(skk))
+
+
+def prPurple(skk):
+    """Purple."""
+    return("\033[95m {}\033[00m" .format(skk))
+
+
+def prCyan(skk):
+    """Cyan."""
+    return("\033[96m {}\033[00m" .format(skk))
+
+
+def prLightGray(skk):
+    """Light Gray."""
+    return("\033[97m {}\033[00m" .format(skk))
+
+
+def prBlack(skk):
+    """Black."""
+    return("\033[98m {}\033[00m" .format(skk))
+
+
 letters_guessed = []
 # makes and stores list of letters that user guessed into array
 
@@ -51,13 +92,14 @@ def is_word_guessed(secret_word, letters_guessed):
         letters_guessed, False otherwise
 
     """
+
+
 # https://stackoverflow.com/questions/12971474/
-# how-to-find-if-a-secret-word-contains-all-the-characters-from-a-words_list
-    # return set(secret_word) <= set(letters_guessed)
-    # TODO: Loop through the letters in the secret_word and check if a letter
-    # is not in letters_guessed
-    pass
-    # help from Jessica Trinh
+# /how-to-find-if-a-secret-word-contains-all-the-characters-from-a-words_list
+# TODO: Loop through the letters in the secret_word and check if a letter
+# is not in letters_guessed
+# pass
+# help from Jessica Trinh
     for letter in secret_word:
         if letter not in letters_guessed:
             return False
@@ -138,57 +180,68 @@ def spaceman(secret_word):
     guess = " "
     guessed_word = False
 
-    print(
-            "Welcome to Spaceman. A friendlier, less morbid version of the"
-            " classic game 'hangman.'You have 7 incorrect guesses per game,"
-            " please enter one letter guess per guess! Have fun!")
-    print("The secret word has " + len_secret_word + " letters.")
-    print("-----------------------")
-    print(secret_word)
+    print(prCyan(
+        """
+            Welcome to Spaceman. Spaceman is a friendlier, less morbid
+            version of the classic game 'hangman.' You have 7 incorrect guesses
+            per game. Please enter one letter per guess! Have fun!"""))
+    print(prLightPurple("The secret word has " + len_secret_word + " letters"))
+    print(prYellow("-----------------------"))
 
     while total_guesses > 0 and total_guesses <= 8 and guessed_word is False:
+
         if secret_word == get_guessed_word(secret_word, letters_guessed):
             guessed_word = True
             break
-        print("You have " + str(total_guesses) + " incorrect guesses left.")
-        guess = input("Enter a single letter: ").lower()
+        print(prPurple((
+            "You have ") + str(total_guesses) + (" incorrect guesses left.")))
+        guess = input(prRed("Enter a single letter: ")).lower()
+
         if guess in secret_word:
             if guess in letters_guessed:
                 print(
-                    "You already guessed that letter"
-                    ": ")
+                    """You already guessed that letter: """)
                 get_guessed_word(secret_word, letters_guessed)
-                print("-----------------------")
+                print(prYellow("-----------------------"))
             else:
                 letters_guessed.append(guess)
                 print(
                     "Your letter is in the secret word! wOo!"
                     "")
                 get_guessed_word(secret_word, letters_guessed)
-                print("-----------------------")
+                print(prYellow("-----------------------"))
         else:
             if guess in letters_guessed:
-                print(
-                    "You already guessed that letter"
-                    ": ")
+                print("""You already guessed that letter: """)
                 get_guessed_word(secret_word, letters_guessed)
-                print("-----------------------")
+                print(prYellow("-----------------------"))
             else:
                 letters_guessed.append(guess)
                 total_guesses -= 1
                 print(
-                    "Your letter is not in the secret word. Try again"
-                    "!")
+                    """Your letter is not in the secret word. Try again!""")
                 get_guessed_word(secret_word, letters_guessed)
-                print("-----------------------")
+                print(prYellow("-----------------------"))
 
-        if guessed_word is True:
-            return "You guessed the secret word! You win!"
-        elif total_guesses == 0:
-            print(
-                "Uh oh! You lost this round. Please play again. The secret"
-                "word was: ")
-            print(secret_word)
+    #    if guessed_word is True:
+    #        return "You guessed the secret word! You win!"
+    if is_word_guessed(secret_word, letters_guessed):
+        print(prGreen("You guessed the secret word! You win!"))
+        print(secret_word)
+    elif total_guesses == 0:
+        print(
+            prRed(
+                """
+                Uh oh! You lost this round. Please play again.The secret
+                word was: """))
+        print(prLightPurple(secret_word))
+        quit()
+        # else:
+        #    print(prGreen("You guessed the secret word! You win!"))
+        # secret_word == get_guessed_word(secret_word, letters_guessed):
+        #    guessed_word is True
+        #    print(prGreen("You guessed the secret word! You win!"))
+        #    quit()
 
     # TODO: show the player information about the game according to the
     # project spec:
