@@ -53,7 +53,7 @@ def is_word_guessed(secret_word, letters_guessed):
     """
 # https://stackoverflow.com/questions/12971474/
 # how-to-find-if-a-secret-word-contains-all-the-characters-from-a-words_list
-    return set(secret_word) <= set(letters_guessed)
+    # return set(secret_word) <= set(letters_guessed)
     # TODO: Loop through the letters in the secret_word and check if a letter
     # is not in letters_guessed
     pass
@@ -89,7 +89,16 @@ def get_guessed_word(secret_word, letters_guessed):
 # not been guessed yet
 
 
-pass
+# pass
+
+    word_progress = ""
+
+    for letter in secret_word:
+        if letter in letters_guessed:
+            word_progress += letter
+        else:
+            word_progress += "_"
+    return word_progress
 
 
 def is_guess_in_word(guess, secret_word):
