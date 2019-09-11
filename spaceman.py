@@ -1,5 +1,9 @@
 import random
 
+letters_guessed = []
+# makes and stores list of letters that user guessed into array
+
+
 def load_word():
     '''
     A function that reads a text file of words and randomly selects one to use as the secret word
@@ -15,6 +19,16 @@ def load_word():
     secret_word = random.choice(words_list)
     return secret_word
 
+# User Input
+# def user_input(prompt):
+#    """Accept user input."""
+    # the input function will display a message in the terminal
+    # and wait for user input.
+#   user_input = input(prompt)
+#  return user_input
+    # user_value = user_input("Please Enter a value:")
+    # print(user_value)
+
 def is_word_guessed(secret_word, letters_guessed):
     '''
     A function that checks if all the letters of the secret word have been guessed.
@@ -24,8 +38,15 @@ def is_word_guessed(secret_word, letters_guessed):
     Returns: 
         bool: True only if all the letters of secret_word are in letters_guessed, False otherwise
     '''
+    # https://stackoverflow.com/questions/12971474/how-to-find-if-a-secret-word-contains-all-the-characters-from-a-list
+    return set(secretWord) <= set(lettersGuessed)
     # TODO: Loop through the letters in the secret_word and check if a letter is not in lettersGuessed
     pass
+    #help from Jessica Trinh
+    for letter in secret_word:
+        if letter not in letter_guessed:
+            return False
+        return True
 
 def get_guessed_word(secret_word, letters_guessed):
     '''
@@ -51,6 +72,7 @@ def is_guess_in_word(guess, secret_word):
     Returns:
         bool: True if the guess is in the secret_word, False otherwise
     '''
+    guess = set()
     #TODO: check if the letter guess is in the secret word
 
     pass
@@ -65,6 +87,15 @@ def spaceman(secret_word):
       secret_word (string): the secret word to guess.
     '''
 
+
+
+
+
+# TEST
+# def test():
+
+# Run tests
+test()
 
     #TODO: show the player information about the game according to the project spec
     # "Welcome to Spaceman. A friendlier, less morbid version of the classic game 'hangman.'" 
