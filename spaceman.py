@@ -1,6 +1,8 @@
 """Spaceman."""
 import random
 
+# Color selection
+
 
 def prRed(skk):
     """Red."""
@@ -65,16 +67,6 @@ def load_word():
     secret_word = random.choice(words_list)
     return secret_word
 
-# User Input
-# def user_input(prompt):
-#    """Accept user input."""
-    # the input function will display a message in the terminal
-    # and wait for user input.
-#   user_input = input(prompt)
-#  return user_input
-    # user_value = user_input("Please Enter a value:")
-    # print(user_value)
-
 
 def is_word_guessed(secret_word, letters_guessed):
     """Check if all letters were guessed."""
@@ -103,7 +95,7 @@ def is_word_guessed(secret_word, letters_guessed):
     for letter in secret_word:
         if letter not in letters_guessed:
             return False
-        return True
+    return True
 
 
 def get_guessed_word(secret_word, letters_guessed):
@@ -130,7 +122,6 @@ def get_guessed_word(secret_word, letters_guessed):
 # in letters_guessed and underscores for the letters that have
 # not been guessed yet
 
-
 # pass
 
     word_progress = " "
@@ -140,7 +131,7 @@ def get_guessed_word(secret_word, letters_guessed):
             word_progress += letter
         else:
             word_progress += "_"
-    return print(word_progress)
+    return print(prCyan(word_progress))
 
 
 def is_guess_in_word(guess, secret_word):
@@ -180,6 +171,8 @@ def spaceman(secret_word):
     guess = " "
     guessed_word = False
 
+    # TODO: show the player information about the game according to the
+    # project spec:
     print(prCyan(
         """
             Welcome to Spaceman. Spaceman is a friendlier, less morbid
@@ -188,26 +181,33 @@ def spaceman(secret_word):
     print(prLightPurple("The secret word has " + len_secret_word + " letters"))
     print(prYellow("-----------------------"))
 
-    while total_guesses > 0 and total_guesses <= 8 and guessed_word is False:
-
+    while total_guesses > 0 and is_word_guessed(
+                secret_word, letters_guessed) is False:
+        guessed_word is False
+        #  Thanks George Aoyogi
         if secret_word == get_guessed_word(secret_word, letters_guessed):
-            guessed_word = True
+            # TODO: Ask the player to guess one letter per round and check that
+            # it is only one letter:
+            guessed_word = False
             break
         print(prPurple((
             "You have ") + str(total_guesses) + (" incorrect guesses left.")))
         guess = input(prRed("Enter a single letter: ")).lower()
 
         if guess in secret_word:
+            # TODO: Check if the guessed letter is in the secret or not and
+            # give the player feedback:
             if guess in letters_guessed:
                 print(
                     """You already guessed that letter: """)
                 get_guessed_word(secret_word, letters_guessed)
+                # TODO: show the guessed word so far
                 print(prYellow("-----------------------"))
             else:
                 letters_guessed.append(guess)
                 print(
-                    "Your letter is in the secret word! wOo!"
-                    "")
+                    prYellow("Your letter is in the secret word!") + prGreen(
+                        "wOo!"))
                 get_guessed_word(secret_word, letters_guessed)
                 print(prYellow("-----------------------"))
         else:
@@ -227,47 +227,18 @@ def spaceman(secret_word):
     #        return "You guessed the secret word! You win!"
     if is_word_guessed(secret_word, letters_guessed):
         print(prGreen("You guessed the secret word! You win!"))
-        print(secret_word)
-    elif total_guesses == 0:
+        print(prYellow(secret_word))
+        quit()
+    else:
+        total_guesses == 0
         print(
-            prRed(
-                """
-                Uh oh! You lost this round. Please play again.The secret
-                word was: """))
+                prRed(
+                    """
+                    Uh oh! You lost this round. Please play again.The secret
+                    word was: """))
         print(prLightPurple(secret_word))
         quit()
-        # else:
-        #    print(prGreen("You guessed the secret word! You win!"))
-        # secret_word == get_guessed_word(secret_word, letters_guessed):
-        #    guessed_word is True
-        #    print(prGreen("You guessed the secret word! You win!"))
-        #    quit()
 
-    # TODO: show the player information about the game according to the
-    # project spec:
-
-    # "Welcome to Spaceman. A friendlier, less morbid version of the classic
-    # game 'hangman.'"
-    # "The secret word contains: 6 letters"
-    # "You will have 7 incorrect guesses, please enter a one letter guess
-    # per round!"
-    # "Have fun!"
-
-    # TODO: Ask the player to guess one letter per round and check that it is
-    # only one letter:
-
-    # "Enter a letter: "
-    # "Please enter a single letter at a time."
-
-    # TODO: Check if the guessed letter is in the secret or not and give
-    # the player feedback:
-
-    # "Your letter is in the secret word! wOo!"
-    # "You haven't guessed these letters yet, keep trying!: "
-    # "Your letter is not in the secret word. Try again!"
-
-    # TODO: show the guessed word so far
-    # "Guessed word so far: "
     # TODO: check if the game has been won or lost
     # "Uh oh! You lost this round. Please play again."
     # "You guessed the secret word! You win!"
