@@ -145,12 +145,11 @@ def is_guess_in_word(guess, secret_word):
     Returns:
         bool: True if the guess is in the secret_word, False otherwise
     """
-
+    # TODO: check if the letter guess is in the secret word
     if guess in secret_word:
         return True
     else:
         return False
-    # TODO: check if the letter guess is in the secret word
 
     # pass
 
@@ -176,9 +175,20 @@ def spaceman(secret_word):
     # project spec:
     print(prCyan(
         """
-            Welcome to Spaceman. Spaceman is a friendlier, less morbid
-            version of the classic game 'hangman.' You have 7 incorrect guesses
-            per game. Please enter one letter per guess! Have fun!"""))
+ __        __   _                            _
+ \\ \\      / /__| | ___ ___  _ __ ___   ___  | |_ ___
+  \\ \\ /\\ / / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\ | __/ _ \\
+   \\ V  V /  __/ | (_| (_) | | | | | |  __/ | || (_) |
+    \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___|  \\__\\___/
+  ____
+ / ___| _ __   __ _  ___ ___ _ __ ___   __ _ _ __
+ \\___ \\| '_ \\ / _` |/ __/ _ \\ '_ ` _ \\ / _` | '_ \\
+  ___) | |_) | (_| | (_|  __/ | | | | | (_| | | | |
+ |____/| .__/ \\__,_|\\___\\___|_| |_| |_|\\__,_|_| |_|
+       |_|
+            Spaceman is a friendlier, less morbid version of the classic game
+            'hangman.' You have 7 incorrect guesses per game. Please enter one
+            letter per guess! Have fun!"""))
     print(prLightPurple("The secret word has " + len_secret_word + " letters"))
     print(prYellow("-----------------------"))
 
@@ -201,8 +211,8 @@ def spaceman(secret_word):
             if guess in letters_guessed:
                 print(
                     """You already guessed that letter: """)
-                get_guessed_word(secret_word, letters_guessed)
                 # TODO: show the guessed word so far
+                get_guessed_word(secret_word, letters_guessed)
                 print(prYellow("-----------------------"))
             else:
                 letters_guessed.append(guess)
@@ -224,10 +234,16 @@ def spaceman(secret_word):
                 get_guessed_word(secret_word, letters_guessed)
                 print(prYellow("-----------------------"))
 
-    #    if guessed_word is True:
-    #        return "You guessed the secret word! You win!"
+    # TODO: check if the game has been won or lost
     if is_word_guessed(secret_word, letters_guessed):
-        print(prGreen("You guessed the secret word! You win!"))
+        print(prGreen("""You guessed the secret word!
+ __   __                     _       _
+ \\ \\ / /__  _   _  __      _(_)_ __ | |
+  \\ V / _ \\| | | | \\ \\ /\\ / / | '_ \\| |
+   | | (_) | |_| |  \\ V  V /| | | | |_|
+   |_|\\___/ \\__,_|   \\_/\\_/ |_|_| |_(_)
+
+"""))
         print(prYellow(secret_word))
         quit()
     else:
@@ -235,14 +251,16 @@ def spaceman(secret_word):
         print(
                 prRed(
                     """
-                    Uh oh! You lost this round. Please play again.The secret
+  _   _ _             _     _
+ | | | | |__     ___ | |__ | |
+ | | | | '_ \\   / _ \\| '_ \\| |
+ | |_| | | | | | (_) | | | |_|
+  \\___/|_| |_|  \\___/|_| |_(_)
+
+ You lost this round. Please play again.The secret
                     word was: """))
         print(prLightPurple(secret_word))
         quit()
-
-    # TODO: check if the game has been won or lost
-    # "Uh oh! You lost this round. Please play again."
-    # "You guessed the secret word! You win!"
 
 
 # These function calls that will start the game
