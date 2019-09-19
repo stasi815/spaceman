@@ -245,7 +245,7 @@ def spaceman(secret_word):
 
 """))
         print(prYellow(secret_word))
-        quit()
+        
     else:
         total_guesses == 0
         print(
@@ -260,7 +260,7 @@ def spaceman(secret_word):
  You lost this round. Please play again.The secret
                     word was: """))
         print(prLightPurple(secret_word))
-        quit()
+       
 
 
 

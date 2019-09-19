@@ -142,9 +142,9 @@ def get_guessed_word(secret_word, letters_guessed):
 
 # test function
 def test_get_guessed_word():
-     assert get_guessed_word(("moonlight"), ['m', 'l', 'o', 'i']) == "moo_li__t"
-     assert get_guessed_word(("phone"), ['h', 'o', 'e']) == "_ho_e"
-     assert get_guessed_word(('gaia'), ['g','i']) == "g_i_"
+     assert get_guessed_word(('moonlight'), ['m', 'i']) == "m____i___"
+     assert get_guessed_word(('phone'), ['h', 'o', 'e']) == "_ho_e"
+     assert get_guessed_word(('gaia'), ['g', 'a', 'i']) == "gaia"
 
 
 def is_guess_in_word(guess, secret_word):
@@ -167,8 +167,8 @@ def is_guess_in_word(guess, secret_word):
 
 # test function
 def test_is_guess_in_word():
-    assert guess_in_word(('s','t','a','r'), ("star")) == True
-    assert guess_in_word(('t','r','e','e'), ("tree")) == True
+    assert is_guess_in_word(('s'), ("star")) == True
+    assert is_guess_in_word(('t'), ("tree")) == True
 
 def spaceman(secret_word):
     """Control spaceman game."""
@@ -261,7 +261,7 @@ def spaceman(secret_word):
 
 """))
         print(prYellow(secret_word))
-        quit()
+        
     else:
         total_guesses == 0
         print(
@@ -276,7 +276,7 @@ def spaceman(secret_word):
  You lost this round. Please play again.The secret
                     word was: """))
         print(prLightPurple(secret_word))
-        quit()
+        
 
 
 
@@ -286,9 +286,10 @@ spaceman(secret_word)
 
 
 # # function unit tests:
-test_is_word_guessed()
-test_get_guessed_word()
-test_is_guess_in_word()
+if __name__ == "__main__":
+    test_is_word_guessed()
+    test_get_guessed_word()
+    test_is_guess_in_word()
 
 # def test_is_word_guessed():
 #     assert is_word_guessed("sunshine", ['s', 'u', 'n', 'h', 'i', 'e']) == True
