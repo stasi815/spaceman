@@ -104,6 +104,7 @@ def is_word_guessed(secret_word, letters_guessed):
 def test_is_word_guessed():
     assert is_word_guessed(("sunshine"), ['s', 'u', 'n', 'h', 'i', 'e']) == True
     assert is_word_guessed(("dog"), ['x']) == False
+    assert is_word_guessed(("jump"), ['j', 'u', 'm', 'p']) == True
 
 def get_guessed_word(secret_word, letters_guessed):
     """Get the guessed word."""
@@ -131,21 +132,20 @@ def get_guessed_word(secret_word, letters_guessed):
 
 # pass
 
-    word_progress = " "
+    word_progress = ""
 
     for letter in secret_word:
         if letter in letters_guessed:
             word_progress += letter
         else:
             word_progress += "_"
-    return print(prCyan(word_progress))
+    return word_progress
 
 # test function
 def test_get_guessed_word():
-     assert get_guessed_word(('moonlight'), ['m', 'i']) == "m____i___"
-     assert get_guessed_word(('phone'), ['h', 'o', 'e']) == "_ho_e"
-     assert get_guessed_word(('gaia'), ['g', 'a', 'i']) == "gaia"
-
+    assert get_guessed_word("moonlight", ['m', 'l', 'o', 'i', 't']) == "moo_li__t"
+    assert get_guessed_word("phone", ['h', 'o', 'e']) == "_ho_e"
+    assert get_guessed_word("gaia", ['g','i']) == "g_i_"
 
 def is_guess_in_word(guess, secret_word):
     """Check if guessed letter is in word."""
@@ -169,6 +169,7 @@ def is_guess_in_word(guess, secret_word):
 def test_is_guess_in_word():
     assert is_guess_in_word(('s'), ("star")) == True
     assert is_guess_in_word(('t'), ("tree")) == True
+    assert is_guess_in_word(('f'), ("fox")) == True
 
 def spaceman(secret_word):
     """Control spaceman game."""
