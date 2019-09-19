@@ -1,3 +1,5 @@
+
+
 """Spaceman."""
 import random
 
@@ -98,6 +100,10 @@ def is_word_guessed(secret_word, letters_guessed):
             return False
     return True
 
+# test function
+def test_is_word_guessed():
+    assert is_word_guessed(("sunshine"), ['s', 'u', 'n', 'h', 'i', 'e']) == True
+    assert is_word_guessed(("dog"), ['x']) == False
 
 def get_guessed_word(secret_word, letters_guessed):
     """Get the guessed word."""
@@ -134,6 +140,12 @@ def get_guessed_word(secret_word, letters_guessed):
             word_progress += "_"
     return print(prCyan(word_progress))
 
+# test function
+def test_get_guessed_word():
+     assert get_guessed_word(("moonlight"), ['m', 'l', 'o', 'i']) == "moo_li__t"
+     assert get_guessed_word(("phone"), ['h', 'o', 'e']) == "_ho_e"
+     assert get_guessed_word(('gaia'), ['g','i']) == "g_i_"
+
 
 def is_guess_in_word(guess, secret_word):
     """Check if guessed letter is in word."""
@@ -153,6 +165,10 @@ def is_guess_in_word(guess, secret_word):
 
     # pass
 
+# test function
+def test_is_guess_in_word():
+    assert guess_in_word(('s','t','a','r'), ("star")) == True
+    assert guess_in_word(('t','r','e','e'), ("tree")) == True
 
 def spaceman(secret_word):
     """Control spaceman game."""
@@ -268,3 +284,21 @@ def spaceman(secret_word):
 secret_word = load_word()
 spaceman(secret_word)
 
+
+# # function unit tests:
+test_is_word_guessed()
+test_get_guessed_word()
+test_is_guess_in_word()
+
+# def test_is_word_guessed():
+#     assert is_word_guessed("sunshine", ['s', 'u', 'n', 'h', 'i', 'e']) == True
+#     assert is_word_guessed("sunshine", ['s', 'u', 'n', 'h', 'i']) == False
+ 
+# def test_get_guessed_word():
+#      assert get_guessed_word(("moonlight"), ['m', 'l', 'o', 'i']) == "moo_li__t"
+#      assert get_guessed_word(("phone"), ['h', 'o', 'e']) == "_ho_e"
+#      assert get_guessed_word(('gaia'), ['g','i']) == "g_i_"
+
+# def test_is_guess_in_word():
+#     assert guess_in_word(('s','t','a','r'), ("star")) == True
+#     assert guess_in_word(('t','r','e','e'), ("tree")) == True
